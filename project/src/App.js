@@ -1,73 +1,107 @@
 import './App.css';
+import { useState } from "react";
+import questions from "./components/Questions";
+import Navbar from "./components/Navbar";
+import { Link } from 'react-';
 
-function MyButton() {
+function App() {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
+  const scores = [];
+  const [showResults, setShowResults] = useState(false);
+
+  const optionClicked = (points) => {
+    // Increment the score
+    score[currentQuestion] = points;
+    setScore(score + points);
+
+    if (currentQuestion + 1 < questions.length) {
+      setCurrentQuestion(currentQuestion + 1);
+    } else {
+      setShowResults(true);
+    }
+  };
+
+  const restartGame = () => {
+    setShowResults(false);
+    setCurrentQuestion(0);
+    setScore(0);
+  };
+
+  // const navigate = useNavigate();
+
+  // const learnMore = () => {
+  //   navigate('ToDoList')
+  // };
+
+  const goingBack = () => {
+    if (currentQuestion > 0) {
+      //setScore(previousScore);
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  };
+
   return (
-    <button>
-      I'm a button
-    </button>
-  );
-}
+    <div className="App">
+      <Navbar />
+      {/* 1. Header  */}
+      <h1 class="text-background">Sustainability Quiz</h1>
 
-export default function MyApp() {
-  return (
-    <div class="App">
-      <h1>Welcome to my app</h1>
+      {/* 2. Current Score FOR DEBUGGING, DELETE LATER */}
+      <h2 class="text-background">Score: {score}</h2>
 
-      <h2>
-        Your current score is:
-      </h2>
+      {/* 3. Show results or show the question game  */}
+      {showResults ? (
+        /* 4. Final Results */
+        <div className="final-results">
+          <h1 class="text-background">Final Results</h1>
+          <h2 className="text-background">
+            Your sustainability score is&nbsp;
+            {Math.round((score / (questions.length * 3)) * 100)}%!<br />
+            {Math.round((score / (questions.length * 3)) * 100) < 100
+              ? "Find out how to improve your score here"
+              : "Keep up the good work! Continue to keep track of your habits here"}
+            {/*Learn more about your score here*/}
+            {/*<button onClick={() => learnMore()}>Click here to learn how to improve your score! </button>*/}
 
-      <div className="QuizQuestionCards">
-        <div class="card">
-          <h2>The question you're on right now: Question 1</h2>
+            {/*<Link to={"./components/ToDoList"}>Click here to learn more</Link>*/}
 
-          <h2 className="QuizQuestion"> Quiz Question  </h2>
+          </h2>
+          <button variant="contained" onClick={() => restartGame()}>Restart game</button>
+        </div>
+      ) : (
+        /* 5. Question Card  */
+        <div className="question-card">
+          {/* Current Question  */}
+          <h2 className="text-background">
+            Question: {currentQuestion + 1} out of {questions.length}
+          </h2>
+          <h3 className="text-background">{questions[currentQuestion].text}</h3>
 
-          <ul class="Answers">
-            <li>Answer 1,</li>
-            <li>Answer 2,</li>
-            <li>Answer 3,</li>
-            <li>Answer 4</li>
-          </ul>
+          {/* List of possible answers  */}
+          <div className="options-container">
+            {questions[currentQuestion].options.map((option) => {
+              return (
+                <div
+                  key={option.id}
+                  onClick={() => optionClicked(option.points)}
+                  className="option"
+                >
+                  {option.text}
+                </div>
+              );
+            })}
+          </div>
+          <button onClick={() => goingBack()}>Back</button>
 
         </div>
-      </div>
-      <MyButton />
-
-      <div className="FinalResultTab">
-        <h1> Your score: </h1>
-
-        <h2>You got a score of 80%</h2>
-
-        {/*<button onClick={() => restartGame()}>Retake the Quiz</button>*/}
 
 
-
-      </div>
+      )}
     </div>
+
   );
+
 }
 
-
-
-
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <p>
-//           Hackathon Quiz
-//         </p>
-
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-
+export default App;
