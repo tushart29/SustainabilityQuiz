@@ -1,9 +1,8 @@
-body {
+/* body {
   text-align: center;
   background-image: url("earth.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  /*background: linear-gradient(90.04deg, #2b2768 0.03%, #3fbbbb 99.96%);*/
   margin: 0;
 }
 
@@ -34,4 +33,4 @@ body {
 .option:hover {
   background-color: lightgrey;
   cursor: pointer;
-}
+} */

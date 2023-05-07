@@ -1,0 +1,51 @@
+.h1 {
+    font-family: "Times New Roman", Times, serif;
+
+
+}
+
+.parent {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: [col1-start] 100px [col2-start] 100px [col3-start] 100px [col3-end];
+    grid-template-rows: [row1-start] auto [row2-start] auto [row2-end];
+}
+
+.div1,
+.div2,
+.div3,
+.div4 {
+
+    color: #fff;
+    padding: 30px;
+    font-size: 15px;
+    /*    font-family: "Times New Roman", Times, serif;*/
+    font-family: "Monaco", monospace;
+    margin-bottom: 1%;
+}
+
+.div1 {
+    background-image: url('./img2.jpg');
+    grid-column: col1-start;
+    grid-row: row1-start / row2-end;
+}
+
+.div2 {
+    background-color: #0cb357;
+    grid-column: col2-start;
+    grid-row: row1-start;
+}
+
+.div3 {
+    background-image: url('./img1.jpg');
+    background-attachment: fixed;
+
+    text-align: left;
+    grid-column: col2-start;
+    grid-row: row2-start;
+}
+
+.div4 {
+    grid-column: col3-start;
+    grid-row: row1-start / row2-end;
+}
