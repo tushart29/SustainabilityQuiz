@@ -4,7 +4,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0;
-    color: aliceblue;
+    color: black;
 }
 
 .text-background {
@@ -17,7 +17,7 @@ body {
     border: 1px solid black;
 }
 
-.task-card {
+li {
     background-color: whitesmoke;
     display: block;
     padding: 10px 20px;

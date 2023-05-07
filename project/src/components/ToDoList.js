@@ -1,16 +1,16 @@
 import React from 'react';
-import tasks from "./Tasks";
+import './ToDoList.css';
 
 function ToDoList() {
 
     return (
         <div>
             <div>
-                <h1 className="text-background">ToDoList</h1>
-                <p className="text-background">Here you can add your to-do items to improve your sustainability score!</p>
+                <h1 className="text-background">To-Do List</h1>
+                <h3 className="text-background">Here you can add your to-do items to improve your sustainability score!</h3>
             </div>
-            <div className="task-card">
-                <ul className="task-card">
+            <div>
+                <ul>
                     <li>Use reusable items - Bring your own reusable bags and water bottles to avoid single-use plastics.</li>
                     <li>Consider using less car - Walk, bike, or take public transportation to reduce your carbon footprint.</li>
                     <li>Cut down on meat intake - Eating less meat can reduce greenhouse gas emissions and save water and land resources.</li>
