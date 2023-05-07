@@ -1,7 +1,6 @@
 import './Quiz.css';
 import { useState } from "react";
 import questions from "./Questions";
-import Calculate from "./Calculate";
 
 function Quiz() {
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -21,7 +20,6 @@ function Quiz() {
         const updatedAnswers = [...answers];
         updatedAnswers[currentQuestion].points = points;
         setAnswers(updatedAnswers);
-        console.log(answers[currentQuestion].points);
 
         if (currentQuestion + 1 < questions.length) {
             setCurrentQuestion(currentQuestion + 1);
@@ -63,10 +61,11 @@ function Quiz() {
                         Your sustainability score is&nbsp;
                         {Math.round((score / (questions.length * 3)) * 100)}%!<br />
                         {Math.round((score / (questions.length * 3)) * 100) < 100
-                            ? "Find out how to improve your score here"
-                            : "Keep up the good work! Continue to keep track of your habits here"}
+                            ? "Find out how to improve your score on the todo list page "
+                            : "Keep up the good work! Continue to keep track of your habits "}
                     </h2>
-                    <button variant="contained" onClick={() => restartGame()}>Restart game</button>
+                    <a href="/todo">To find out how to improve your score, click here </a>
+                    <button variant="contained" onClick={() => restartGame()}>Restart quiz</button>
                 </div>
             ) : (
                 /* 5. Question Card  */

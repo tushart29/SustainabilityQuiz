@@ -4,9 +4,20 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0;
+    color: aliceblue;
 }
 
 .text-background {
+    background-color: whitesmoke;
+    display: block;
+    padding: 10px 20px;
+    width: fit-content;
+    margin: 20px auto;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.task-card {
     background-color: whitesmoke;
     display: block;
     padding: 10px 20px;

@@ -1,7 +1,7 @@
-import answers from "./Quiz.js";
+import React from "react";
+import tasks from "./Tasks";
 
-function Calculate() {
-
+function Calculate({ answers }) {
     const suggestedTasks = [];
     if (answers[1].points + answers[2].points < 4) {
         suggestedTasks.push(1);
@@ -19,7 +19,23 @@ function Calculate() {
         suggestedTasks.push(5);
     }
 
-    return suggestedTasks;
+    return (
+        <div className="suggested-tasks">
+            {suggestedTasks.length > 0 && (
+                <div>
+                    <h2 className="text-background">Suggested Tasks</h2>
+                    <ul>
+                        {suggestedTasks.map((taskIndex) => (
+                            <li key={taskIndex}>
+                                <h3>{tasks[taskIndex].task}</h3>
+                                <p>{tasks[taskIndex].description}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+        </div>
+    );
 }
 
 export default Calculate;
