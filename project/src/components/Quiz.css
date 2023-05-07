@@ -1,11 +1,13 @@
 body {
     text-align: center;
-    /*background-image: url("earth.jpg");*/
+    background-image: url("earth_image.jpeg");
     background-size: cover;
     background-repeat: no-repeat;
     /*background: linear-gradient(90.04deg, #2b2768 0.03%, #3fbbbb 99.96%);*/
     margin: 0;
 }
+
+
 
 .text-background {
     background-color: whitesmoke;

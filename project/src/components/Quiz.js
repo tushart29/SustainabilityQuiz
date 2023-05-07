@@ -1,15 +1,14 @@
-
-import Navbar from "./Navbar";
 import './Quiz.css';
 import { useState } from "react";
 import questions from "./Questions";
-
+import Calculate from "./Calculate";
 
 function Quiz() {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [scores, setScores] = useState(new Array(questions.length).fill(0));
     const [showResults, setShowResults] = useState(false);
+    const [answers, setAnswers] = useState(new Array(questions.length).fill({ points: 0 }));
 
     const optionClicked = (points) => {
         // Increment the score
@@ -17,6 +16,12 @@ function Quiz() {
         updatedScores[currentQuestion] = points;
         setScore(score + points);
         setScores(updatedScores);
+
+        // Update the corresponding answer in the answers array
+        const updatedAnswers = [...answers];
+        updatedAnswers[currentQuestion].points = points;
+        setAnswers(updatedAnswers);
+        console.log(answers[currentQuestion].points);
 
         if (currentQuestion + 1 < questions.length) {
             setCurrentQuestion(currentQuestion + 1);
@@ -29,13 +34,12 @@ function Quiz() {
         setShowResults(false);
         setCurrentQuestion(0);
         setScore(0);
+
+        // Reset the answers array
+        const resetAnswers = [...answers];
+        resetAnswers.forEach((answer) => answer.points = 0);
+        setAnswers(resetAnswers);
     };
-
-    // const navigate = useNavigate();
-
-    // const learnMore = () => {
-    //   navigate('ToDoList')
-    // };
 
     const goingBack = () => {
         if (currentQuestion > 0) {
@@ -44,34 +48,23 @@ function Quiz() {
         }
     };
 
-
-
     return (
-
         <div className="App">
-            <Navbar />
             {/* 1. Header  */}
-            <h1 class="text-background">Sustainability Quiz</h1>
-
-            {/* 2. Current Score FOR DEBUGGING, DELETE LATER */}
-            <h2 class="text-background">Score: {score}</h2>
+            <h1 className="text-background">Sustainability Quiz</h1>
 
             {/* 3. Show results or show the question game  */}
             {showResults ? (
                 /* 4. Final Results */
                 <div className="final-results">
-                    <h1 class="text-background">Final Results</h1>
+                    <h1 className="text-background">Final Results</h1>
                     <h2 className="text-background">
+
                         Your sustainability score is&nbsp;
                         {Math.round((score / (questions.length * 3)) * 100)}%!<br />
                         {Math.round((score / (questions.length * 3)) * 100) < 100
                             ? "Find out how to improve your score here"
                             : "Keep up the good work! Continue to keep track of your habits here"}
-                        {/*Learn more about your score here*/}
-                        {/*<button onClick={() => learnMore()}>Click here to learn how to improve your score! </button>*/}
-                        {/*<p>Click <a>here</a> to learn more about sustainability</p>*/}
-                        {/*<Link to={"./components/ToDoList"}>Click here to learn more</Link>*/}
-
                     </h2>
                     <button variant="contained" onClick={() => restartGame()}>Restart game</button>
                 </div>
@@ -86,6 +79,7 @@ function Quiz() {
                     {/* List of possible answers  */}
                     <div className="options-container">
                         {questions[currentQuestion].options.map((option) => {
+
                             return (
                                 <div
                                     key={option.id}
@@ -98,14 +92,10 @@ function Quiz() {
                         })}
                     </div>
                     <button onClick={() => goingBack()}>Back</button>
-
                 </div>
-
-
             )}
         </div>
-
     );
-
 }
+
 export default Quiz;

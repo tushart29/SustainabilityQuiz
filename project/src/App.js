@@ -1,17 +1,26 @@
-import './components/HomePage.css';
-//import 'App.css';
-import Quiz from "./components/Quiz";
+import Home from './components/Home';
+import Quiz from './components/Quiz';
 import Navbar from './components/Navbar';
-import Home from "./components/Home";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import ToDoList from './components/ToDoList';
 
 function App() {
+  let component
+  switch (window.location.pathname) {
+    default:
+      component = <Home />
+      break
+    case "/quiz":
+      component = <Quiz />
+      break
+    case "/todo":
+      component = <ToDoList />
+      break
+  }
   return (
-    <div>
+    <>
       <Navbar />
-      <Home />
-    </div>
+      {component}
+    </>
   );
 }
 

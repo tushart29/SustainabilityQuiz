@@ -1,31 +1,53 @@
-.h1 {
-    font-family: "Times New Roman", Times, serif;
+.webpage {
+    background-color: black;
+}
 
+a:link {
+    color: #fff;
+}
 
+a:visited {
+
+    color: bisque;
+}
+
+.yellow {
+    color: white;
+    background-color: rgb(245, 167, 0);
+}
+
+h1,
+h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 50;
+}
+
+.h3 {
+    z-index: 1000;
 }
 
 .parent {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: [col1-start] 100px [col2-start] 100px [col3-start] 100px [col3-end];
+    grid-template-columns: [col1-start] 100px [col2-start] 100px [col3-start] 100px [col3-end] 100px [col4-end];
     grid-template-rows: [row1-start] auto [row2-start] auto [row2-end];
 }
 
 .div1,
 .div2,
 .div3,
-.div4 {
+.div4,
+.footer {
 
     color: #fff;
     padding: 30px;
     font-size: 15px;
-    /*    font-family: "Times New Roman", Times, serif;*/
-    font-family: "Monaco", monospace;
     margin-bottom: 1%;
 }
 
 .div1 {
     background-image: url('./img2.jpg');
+    background-attachment: fixed;
     grid-column: col1-start;
     grid-row: row1-start / row2-end;
 }
@@ -48,4 +70,38 @@
 .div4 {
     grid-column: col3-start;
     grid-row: row1-start / row2-end;
+
+}
+
+
+
+.footer {
+    left: 0;
+    text-align: left;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background-color: rgb(1, 1, 48);
+    color: #fff;
+    overflow: auto;
+    position: relative;
+
+}
+
+
+.div5 {
+
+    width: 40%;
+    height: 70%;
+    background-color: rgb(0, 211, 200);
+    opacity: 0.99;
+    position: absolute;
+}
+
+.div6 {
+    width: 14%;
+    height: 70%;
+    background-image: url('bothell.png');
+    position: absolute;
+    left: 975px;
 }
